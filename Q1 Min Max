@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+//User Libraries
+
+//Global Constants - Math/Physics Constants, Conversions,
+//                   2-D Array Dimensions
+
+//Function Prototypes
+void minmax(int,int,int,int&,int&);//Function to find the min and max
+
+//Execution Begins Here
+int main(int argc, char** argv) {
+    //Declare Variables
+    
+    //Initialize Variables
+    int x,y,z;
+    int min, max;
+    //Process/Map inputs to outputs
+    cout << "Input 3 numbers" << endl;
+    cin >> x >> y >> z;
+    minmax(x,y,z,min,max);
+    //Output data
+    
+    //Exit stage right!
+    return 0;
+}
+
+void minmax(int x, int y, int z,int &min,int &max){
+    if (x > y){
+        max = x;
+        min = y;
+    } else {
+        max = y;
+        min = x;
+    }
+    
+    if (min > z){
+        min = z;
+    } 
+    if(z > max){
+        max = z;
+    }
+    
+    cout << "Min = " << min << endl;
+    cout << "Max = " << max;
+    
+};
