@@ -1,0 +1,81 @@
+#include <iostream>  //Input/Output Library
+#include <iomanip>
+using namespace std;
+
+//User Libraries
+
+//Global Constants, no Global Variables are allowed
+//Math/Physics/Conversions/Higher Dimensions - i.e. PI, e, etc...
+
+//Function Prototypes
+
+//Execution Begins Here!
+int main(int argc, char** argv) {
+    //Set the random number seed
+    
+    //Declare Variables
+    char y;
+    string ampm;
+    
+    int hr, min, wait, temp;
+    hr = 0;
+    min = 0;
+    wait = 0;
+    temp = 0;
+    
+    //Initialize or input i.e. set variable values
+    y = 'y';
+    //Map inputs -> outputs
+    do{
+        cout << "Enter hour:" << endl;
+        cin >> hr;
+        cout << endl;
+        
+        cout << "Enter minutes:" << endl;
+        cin >> min;
+        cout << endl;
+        
+        cout << "Enter A for AM, P for PM:" << endl;
+        cin >> ampm;
+        cout << endl;
+        
+        if (ampm == "a" || ampm == "A"){
+            ampm = "AM";
+        } else {ampm = "PM";}
+        
+        cout << "Enter waiting time:" << endl;
+        cin >> wait;
+        cout << endl;
+        
+        cout << "Current time = " << setw(2) << setfill('0') << hr << ":" << setw(2) << setfill('0') << min << " " << ampm << endl;
+        
+        temp = min + wait;
+        
+        if (temp >= 60){
+            hr = hr + (temp/60);
+            if (hr > 12){
+                hr -= 12;
+                ampm = "PM";
+            }
+            
+            min = temp%60;
+        } else {min = temp;}
+        
+        if (temp < 60){
+            min = temp;
+        }
+        
+        //cout << setprecision(3) << setfill('0');
+        cout << "Time after waiting period = " << setw(2) << setfill('0') << hr << ":" << setw(2) << setfill('0') << min << " " << ampm << endl << endl;
+        
+        cout << "Again:" << endl;
+        cin >> y;
+        if (y == 'y'){
+            cout << endl;
+        }
+    }while(y == 'y');
+    //Display the outputs
+
+    //Exit stage right or left!
+    return 0;
+}
