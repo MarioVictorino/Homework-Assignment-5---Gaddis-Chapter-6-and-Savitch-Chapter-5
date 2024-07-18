@@ -1,0 +1,55 @@
+#include <iostream>
+#include <cstring>
+#include <string>
+using namespace std;
+
+//User Libraries
+
+//Global Constants - Math/Physics Constants, Conversions,
+//                   2-D Array Dimensions
+
+//Function Prototypes
+int collatz(int);//3n+1 sequence
+
+//Execution Begins Here
+int main(int argc, char** argv) {
+    //Declare Variables
+    int n,ns;
+    
+    //Initialize Variables
+    cout<<"Collatz Conjecture Test"<<endl;
+    cout<<"Input a sequence start"<<endl;
+    cin>>n;
+    
+    //Process/Map inputs to outputs
+    ns=collatz(n);
+    
+    //Output data
+    cout<<"Sequence start of "<<n<<" cycles to 1 in "<<
+            ns<<" steps";
+    
+    //Exit stage right!
+    return 0;
+}
+
+int collatz(int n){
+    int count = 1;
+    string output;
+    output = to_string(n) + ", ";
+    
+    do{
+       if(n%2 == 0){
+           n = n/2;
+       } else {
+           n = 3*n+1;
+       }
+       count++;
+       output += to_string(n) + ", ";
+    }while(n != 1);
+    
+    output.pop_back();  //Removes the extra space at the end
+    output.pop_back();  //Removes the extra comma at the end
+    cout << output << endl;
+    
+    return count;
+}
