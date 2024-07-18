@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+//User Libraries
+
+//Global Constants - Math/Physics Constants, Conversions,
+//                   2-D Array Dimensions
+
+//Function Prototypes
+bool isPrime(int);//Determine if the input number is prime.
+
+//Execution Begins Here
+int main(int argc, char** argv) {
+    //Declare Variables
+    
+    //Initialize Variables
+    float x;
+    bool y;
+    //Process/Map inputs to outputs
+    cout << "Input a number to test if Prime." << endl;
+    cin >> x;
+    
+    y = isPrime(x);
+    
+    //Output data
+    if (y){
+        cout << x << " is prime.";
+    }
+    if (!y){
+        cout << x << " is not prime.";
+    }
+    //Exit stage right!
+    return 0;
+}
+
+bool isPrime(int x){
+    float check;
+    check = 0;
+    
+    check = x%2;
+    if(check == 0){
+        return false;
+    }
+    if (check != 0){
+        return true;
+    }
+    
+}
