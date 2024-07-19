@@ -1,0 +1,463 @@
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+using namespace std;
+
+//User Libraries
+
+//Global Constants Only!
+
+//Function Prototypes
+void Menu();
+int  getN();
+void def(int);
+void problem1();
+void problem2();
+void problem3();
+void problem4();
+void problem5();
+void problem6();
+void problem7();
+void problem8();
+void problem9();
+
+void minmax(int, int, int,int &,int &);
+int fctrl(int);
+bool isPrime(int);
+int collatz(int);
+int collatz(int);
+void input();
+void conver(int, int);
+void output(int&, int&, int&, int&, char&);
+float psntVal(float,float,int);
+void getScre(int &, int &, int &, int &, int &);
+float calcAvg(int,int,int,int,int);
+int findLwst(int,int,int,int,int);
+
+//Execution Begins Here!
+int main(int argc, char** argv) {
+    //Set a Random number seed here.
+    
+    //Declare Main variables here.
+    int inN;
+    
+    //Loop on each problem
+    do{
+        //cout << "HERE" << endl;
+        Menu();
+        inN=getN();
+        switch(inN){
+            case 1:    problem1();break;
+            case 2:    problem2();break;
+            case 3:    problem3();break;
+            case 4:    problem4();break;
+            case 5:    problem5();break;
+            case 6:    problem6();break;
+            case 7:    problem7();break;
+            case 8:    problem8();break;
+            case 9:    problem9();break;
+            default:   def(inN);
+	      }
+    }while(inN<10);
+
+    //Exit Stage Right Here!
+    return 0;
+}
+
+void Menu(){
+    cout<<endl;
+    cout<<"Type 1 to execute Problem 1"<<endl;
+    cout<<"Type 2 to execute Problem 2"<<endl;
+    cout<<"Type 3 to execute Problem 3"<<endl;
+    cout<<"Type 4 to execute Problem 4"<<endl;
+    cout<<"Type 5 to execute Problem 5"<<endl;
+    cout<<"Type 6 to execute Problem 6"<<endl;
+    cout<<"Type 7 to execute Problem 7"<<endl;
+    cout<<"Type 8 to execute Problem 8"<<endl;
+    cout<<"Type 9 to execute Problem 9"<<endl;
+    cout<<"Type anything else to exit."<<endl<<endl;
+}
+
+int  getN(){
+    int inN;
+    cin>>inN;
+    return inN;
+}
+
+void def(int inN){
+    cout<<endl<<"Typing "<<inN<<" exits the program."<<endl;
+}
+
+void problem1(){
+  int x,y,z;
+  int min, max;
+
+    cout << "Input 3 numbers" << endl;
+    cin >> x >> y >> z;
+    minmax(x,y,z,min,max);
+}
+
+void minmax(int x, int y, int z,int &min,int &max){
+    if (x > y){
+        max = x;
+        min = y;
+    } else {
+        max = y;
+        min = x;
+    }
+    
+    if (min > z){
+        min = z;
+    } 
+    if(z > max){
+        max = z;
+    }
+    
+    cout << "Min = " << min << endl;
+    cout << "Max = " << max;
+    
+};
+
+void problem2(){
+  int n;
+    //Process/Map inputs to outputs
+    cout << "This program calculates the factorial using a function prototype found in the template for this problem." << endl;
+    cout << "Input the number for the function." << endl;
+    cin >> n;
+    
+    fctrl(n);
+}
+
+int fctrl(int n){
+    int fact;
+    fact = 1;
+
+    for(int i=1;i<=n;i++){
+        fact*=i;
+    }
+    cout << n << "! = " << fact;
+}
+
+void problem3(){
+  float x;
+    bool y;
+    //Process/Map inputs to outputs
+    cout << "Input a number to test if Prime." << endl;
+    cin >> x;
+    
+    y = isPrime(x);
+    
+    //Output data
+    if (y){
+        cout << x << " is prime.";
+    }
+    if (!y){
+        cout << x << " is not prime.";
+    }
+}
+
+bool isPrime(int x){
+    float check;
+    check = 0;
+    
+    check = x%2;
+    if(check == 0){
+        return false;
+    }
+    if (check != 0){
+        return true;
+    }
+    
+}
+
+void problem4(){
+int n;
+    
+    //Initialize Variables
+    cout<<"Collatz Conjecture Test"<<endl;
+    cout<<"Input a sequence start"<<endl;
+    cin>>n;
+    
+    //Process/Map inputs to outputs
+    cout<<"Sequence start of "<<n<<" cycles to 1 in "<<
+            collatz(n)<<" steps";
+}
+
+int collatz(int n){
+    int count = 1;
+    
+    do{
+       if(n%2 == 0){
+           n = n/2;
+       } else {
+           n = 3*n+1;
+       }
+       count++;
+    }while(n != 1);
+    
+    return count;
+}
+
+void problem5(){
+int n,ns;
+    
+    //Initialize Variables
+    cout<<"Collatz Conjecture Test"<<endl;
+    cout<<"Input a sequence start"<<endl;
+    cin>>n;
+    
+    //Process/Map inputs to outputs
+    ns=collatz(n);
+    
+    //Output data
+    cout<<"Sequence start of "<<n<<" cycles to 1 in "<<
+            ns<<" steps";
+}
+
+int collatz(int n){
+    int count = 1;
+    string output;
+    output = to_string(n) + ", ";
+    
+    do{
+       if(n%2 == 0){
+           n = n/2;
+       } else {
+           n = 3*n+1;
+       }
+       count++;
+       output += to_string(n) + ", ";
+    }while(n != 1);
+    
+    output.pop_back();  //Removes the extra space at the end
+    output.pop_back();  //Removes the extra comma at the end
+    cout << output << endl;
+    
+    return count;
+}
+
+void problem6(){
+char y;
+    string ampm;
+    
+    int hr, min, wait, temp;
+    hr = 0;
+    min = 0;
+    wait = 0;
+    temp = 0;
+    
+    //Initialize or input i.e. set variable values
+    y = 'y';
+    //Map inputs -> outputs
+    do{
+        cout << "Enter hour:" << endl;
+        cin >> hr;
+        cout << endl;
+        
+        cout << "Enter minutes:" << endl;
+        cin >> min;
+        cout << endl;
+        
+        cout << "Enter A for AM, P for PM:" << endl;
+        cin >> ampm;
+        cout << endl;
+        
+        if (ampm == "a" || ampm == "A"){
+            ampm = "AM";
+        } else {ampm = "PM";}
+        
+        cout << "Enter waiting time:" << endl;
+        cin >> wait;
+        cout << endl;
+        
+        cout << "Current time = " << setw(2) << setfill('0') << hr << ":" << setw(2) << setfill('0') << min << " " << ampm << endl;
+        
+        temp = min + wait;
+        
+        if (temp >= 60){
+            hr = hr + (temp/60);
+            if (hr > 12){
+                hr -= 12;
+                ampm = "PM";
+            }
+            
+            min = temp%60;
+        } else {min = temp;}
+        
+        if (temp < 60){
+            min = temp;
+        }
+        
+        //cout << setprecision(3) << setfill('0');
+        cout << "Time after waiting period = " << setw(2) << setfill('0') << hr << ":" << setw(2) << setfill('0') << min << " " << ampm << endl << endl;
+        
+        cout << "Again:" << endl;
+        cin >> y;
+        if (y == 'y'){
+            cout << endl;
+        }
+    }while(y == 'y');
+}
+
+void problem7(){
+char y;
+    char ampm;
+    
+    int hr, min, mHr, mMin, temp;
+    hr = 0;
+    min = 0;
+    temp = 0;
+    mHr = 0;
+    mMin = 0;
+    
+    //Initialize or input i.e. set variable values
+    y = 'y';
+    //Map inputs -> outputs
+    cout << "Military Time Converter to Standard Time" << endl;
+    cout << "Input Military Time hh:mm" << endl;
+    do{
+        input();
+        
+        cout << "Would you like to convert another time (y/n)" << endl;
+        cin >> y;
+        /*if (y == 'y'){
+            cout << endl;
+        }*/
+    }while(y == 'y' || y == 'Y');
+}
+
+void input(){
+    int mHr, mMin;
+    char col;
+    cin >> mHr >> col >> mMin;
+    
+    if (mHr <= 24 && mHr >= 0 && mMin >= 0 && mMin <= 60){
+        conver(mHr, mMin);
+    }else{
+        cout << mHr << ":" << mMin << " is not a valid time" << endl;
+    }
+}
+
+void conver(int mHr, int mMin){
+    char a;
+    int hr;
+    int min;
+    
+    //mHr -= 12;
+    if (mHr > 12){
+        hr = mHr - 12;
+        a = 'P';
+    }
+    if (mHr == 0){
+        hr = 12;
+        a = 'A';
+    }
+    if(mHr == 12){
+        hr = mHr;
+        a = 'P';
+    }
+    //hr = mHr - 12;
+    min = mMin;
+    if (hr < 0){
+        hr *= -1;
+    }
+    
+    /*if (hr < 12){
+        a = 'P';
+    } else {
+        a = 'A';
+    }*/
+    
+    output(hr, min, mHr, mMin, a);
+}
+
+void output(int &hr,int &min, int &mHr, int &mMin, char &a){
+    string ampm;
+    
+    if (a == 'A'){
+        ampm = " AM";
+    }
+    if(a == 'P'){
+        ampm = " PM";
+    }
+    
+    cout << setw(2) << setfill('0') << mHr << ":" << mMin << " = " << hr << ":" << min << ampm << endl;
+}
+
+void problem8(){
+float future;
+    float rate;
+    int years;
+    
+    cout << "This is a Present Value Computation" << endl;
+    cout << "Input the Future Value in Dollars" << endl;
+    cin >> future;
+    
+    cout << "Input the Number of Years" << endl;
+    cin >> years;
+    
+    cout << "Input the Interest Rate %/yr" << endl;
+    cin >> rate;
+    
+    psntVal(future, rate, years);
+}
+
+float psntVal(float future,float rate,int years){
+    float present;
+    float rDec;
+    
+    rDec = rate/100 + 1;
+    
+    present = future/pow(rDec, years);
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "The Present Value = $" << present;
+    
+    return present;
+}
+
+void problem9(){
+int a,b,c,d,e;
+
+    cout << "Find the Average of Test Scores" << endl;
+    cout << "by removing the lowest value." <<endl;
+    cout << "Input the 5 test scores." << endl;
+    
+    getScre(a,b,c,d,e);
+    calcAvg(a,b,c,d,e);
+}
+
+void getScre(int &a, int &b, int &c, int &d, int &e){
+    
+    cin >> a;
+    cin >> b;
+    cin >> c;
+    cin >> d;
+    cin >> e;
+}
+
+float calcAvg(int a,int b,int c,int d,int e){
+    int min;
+    min = findLwst(a,b,c,d,e);
+    
+    float ave;
+    ave = 0;
+    
+    ave = a + b + c + d + e - min;
+    
+    ave /= 4;
+    cout << setprecision(1) << fixed << showpoint;
+    cout << "The average test score = " << ave;
+}
+
+int findLwst(int a, int b, int c, int d, int e){
+    int min;
+    min = 100;
+    
+    min = a < min ? a:min;
+    min = b < min ? b:min;
+    min = c < min ? c:min;
+    min = d < min ? d:min;
+    min = e < min ? e:min;
+    
+    return min;
+}
