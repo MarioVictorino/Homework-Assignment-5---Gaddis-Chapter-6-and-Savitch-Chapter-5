@@ -1,0 +1,106 @@
+#include <iostream>  //Input/Output Library
+#include <iomanip>
+#include <iomanip>
+using namespace std;
+
+//User Libraries
+
+//Global Constants, no Global Variables are allowed
+//Math/Physics/Conversions/Higher Dimensions - i.e. PI, e, etc...
+
+//Function Prototypes
+void input();
+void conver(int, int);
+void output(int&, int&, int&, int&, char&);
+//Execution Begins Here!
+int main(int argc, char** argv) {
+    //Set the random number seed
+    
+    //Declare Variables
+    char y;
+    char ampm;
+    
+    int hr, min, mHr, mMin, temp;
+    hr = 0;
+    min = 0;
+    temp = 0;
+    mHr = 0;
+    mMin = 0;
+    
+    //Initialize or input i.e. set variable values
+    y = 'y';
+    //Map inputs -> outputs
+    cout << "Military Time Converter to Standard Time" << endl;
+    cout << "Input Military Time hh:mm" << endl;
+    do{
+        input();
+        
+        cout << "Would you like to convert another time (y/n)" << endl;
+        cin >> y;
+        /*if (y == 'y'){
+            cout << endl;
+        }*/
+    }while(y == 'y' || y == 'Y');
+    //Display the outputs
+
+    //Exit stage right or left!
+    return 0;
+}
+
+void input(){
+    int mHr, mMin;
+    char col;
+    cin >> mHr >> col >> mMin;
+    
+    if (mHr <= 24 && mHr >= 0 && mMin >= 0 && mMin <= 60){
+        conver(mHr, mMin);
+    }else{
+        cout << mHr << ":" << mMin << " is not a valid time" << endl;
+    }
+}
+
+void conver(int mHr, int mMin){
+    char a;
+    int hr;
+    int min;
+    
+    //mHr -= 12;
+    if (mHr > 12){
+        hr = mHr - 12;
+        a = 'P';
+    }
+    if (mHr == 0){
+        hr = 12;
+        a = 'A';
+    }
+    if(mHr == 12){
+        hr = mHr;
+        a = 'P';
+    }
+    //hr = mHr - 12;
+    min = mMin;
+    if (hr < 0){
+        hr *= -1;
+    }
+    
+    /*if (hr < 12){
+        a = 'P';
+    } else {
+        a = 'A';
+    }*/
+    
+    output(hr, min, mHr, mMin, a);
+}
+
+void output(int &hr,int &min, int &mHr, int &mMin, char &a){
+    string ampm;
+    
+    if (a == 'A'){
+        ampm = " AM";
+    }
+    if(a == 'P'){
+        ampm = " PM";
+    }
+    
+    cout << setw(2) << setfill('0') << mHr << ":" << mMin << " = " << hr << ":" << min << ampm << endl;
+}
