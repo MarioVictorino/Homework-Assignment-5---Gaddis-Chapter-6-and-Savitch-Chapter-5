@@ -1,0 +1,66 @@
+#include <iostream>  //Input/Output Library
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+//User Libraries
+
+//Global Constants, no Global Variables are allowed
+//Math/Physics/Conversions/Higher Dimensions - i.e. PI, e, etc...
+
+//Function Prototypes
+void getScre(int &, int &, int &, int &, int &);
+float calcAvg(int,int,int,int,int);
+int findLwst(int,int,int,int,int);
+//Execution Begins Here!
+int main(int argc, char** argv) {
+
+    int a,b,c,d,e;
+
+    cout << "Find the Average of Test Scores" << endl;
+    cout << "by removing the lowest value." <<endl;
+    cout << "Input the 5 test scores." << endl;
+    
+    getScre(a,b,c,d,e);
+    calcAvg(a,b,c,d,e);
+    
+    
+    //Exit stage right or left!
+    return 0;
+}
+
+void getScre(int &a, int &b, int &c, int &d, int &e){
+    
+    cin >> a;
+    cin >> b;
+    cin >> c;
+    cin >> d;
+    cin >> e;
+}
+
+float calcAvg(int a,int b,int c,int d,int e){
+    int min;
+    min = findLwst(a,b,c,d,e);
+    
+    float ave;
+    ave = 0;
+    
+    ave = a + b + c + d + e - min;
+    
+    ave /= 4;
+    cout << setprecision(1) << fixed << showpoint;
+    cout << "The average test score = " << ave;
+}
+
+int findLwst(int a, int b, int c, int d, int e){
+    int min;
+    min = 100;
+    
+    min = a < min ? a:min;
+    min = b < min ? b:min;
+    min = c < min ? c:min;
+    min = d < min ? d:min;
+    min = e < min ? e:min;
+    
+    return min;
+}
