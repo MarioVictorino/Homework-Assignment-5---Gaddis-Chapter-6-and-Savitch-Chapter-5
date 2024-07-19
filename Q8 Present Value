@@ -1,0 +1,48 @@
+#include <iostream>  //Input/Output Library
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+//User Libraries
+
+//Global Constants, no Global Variables are allowed
+//Math/Physics/Conversions/Higher Dimensions - i.e. PI, e, etc...
+
+//Function Prototypes
+float psntVal(float,float,int);
+//Execution Begins Here!
+int main(int argc, char** argv) {
+
+    float future;
+    float rate;
+    int years;
+    
+    cout << "This is a Present Value Computation" << endl;
+    cout << "Input the Future Value in Dollars" << endl;
+    cin >> future;
+    
+    cout << "Input the Number of Years" << endl;
+    cin >> years;
+    
+    cout << "Input the Interest Rate %/yr" << endl;
+    cin >> rate;
+    
+    psntVal(future, rate, years);
+    
+    
+    //Exit stage right or left!
+    return 0;
+}
+
+float psntVal(float future,float rate,int years){
+    float present;
+    float rDec;
+    
+    rDec = rate/100 + 1;
+    
+    present = future/pow(rDec, years);
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "The Present Value = $" << present;
+    
+    return present;
+}
